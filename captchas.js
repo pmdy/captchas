@@ -26,7 +26,7 @@ const solve = async (arguments) => {
     let {status, request} = await get(api_url)
     if(status) {
       let result_url = `https://2captcha.com/res.php?header_acao=1&key=${api_key}&action=get&id=${request}&json=1&soft_id=7996404`;
-      await delay(20000)
+      await delay(2000)
 
       while(true){
         response = await get(result_url)
@@ -40,7 +40,7 @@ const solve = async (arguments) => {
         } else {
           return callback(response)
         }
-        await delay(10000)
+        await delay(1000)
       }
 
       [...document.querySelectorAll('[name="h-captcha-response"],[name="g-recaptcha-response"]')].map(el => {
@@ -106,7 +106,6 @@ const solve = async (arguments) => {
 
   const solveCaptchas = async () => {
     // look for hcaptcha / recaptcha\
-    setTimeout(() => callback('Failed'), 60000)
     let el = document.querySelector('.h-captcha')
     let form = el ? el.closest('form') : document.querySelector('#challenge-form')
     if(form){
@@ -121,7 +120,7 @@ const solve = async (arguments) => {
    }
 
   const [api_key, options, callback] = arguments
-
+  
   await solveCaptchas()
 }
 
