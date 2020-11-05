@@ -106,7 +106,7 @@ const solve = async (arguments) => {
 
   const solveCaptchas = async () => {
     // look for hcaptcha / recaptcha\
-    // setTimeout(() => callback('Failed'), 60000)
+    setTimeout(() => callback('Failed'), 60000)
     let el = document.querySelector('.h-captcha')
     let form = el ? el.closest('form') : document.querySelector('#challenge-form')
     if(form){
