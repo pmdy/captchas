@@ -18,6 +18,7 @@ const solve = async (arguments) => {
   const waitForCaptcha = async (sitekey, method) => {
     let key = method === 'hcaptcha' ? 'sitekey' : 'googlekey'
     let api_url = `https://2captcha.com/in.php?header_acao=1&key=${api_key}&method=${method}&${key}=${sitekey}&json=1&pageurl=${document.location.href}`
+    
     let div = document.querySelector('[data-s]')
     if(div){
       api_url += `&data-s=${div.getAttribute('data-s')}`
@@ -84,7 +85,7 @@ const solve = async (arguments) => {
       document.querySelector('[data-sitekey]').getAttribute('data-sitekey') :
       document.querySelector('iframe[src*=sitekey]').src.match(/[?&]sitekey=([\w-]+)/)[1]
 
-    console.log(sitekey)
+    console.log('SITEKEY: ', sitekey)
 
     await waitForCaptcha(sitekey, 'hcaptcha')
   }
